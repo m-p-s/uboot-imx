@@ -47,7 +47,7 @@ static int var_scu_eeprom_read(u8 *buf, u32 size)
 	return ret;
 }
 
-static int var_scu_eeprom_read_header(struct var_eeprom *e)
+int var_scu_eeprom_read_header(struct var_eeprom *e)
 {
 	int ret;
 
@@ -138,7 +138,7 @@ int var_eeprom_get_dram_size(struct var_eeprom *ep, phys_size_t *size)
 {
 	/* No data in EEPROM - return default DRAM size */
 	if (!var_eeprom_is_valid(ep)) {
-		*size = DEFAULT_SDRAM_SIZE;
+		*size = DEFAULT_DRAM_SIZE;
 		return 0;
 	}
 
