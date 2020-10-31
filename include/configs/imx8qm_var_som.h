@@ -172,10 +172,10 @@
 	"optargs=setenv bootargs ${bootargs} ${kernelargs};\0" \
 	"mmcargs=setenv bootargs console=${console},${baudrate} earlycon " \
 		"root=/dev/mmcblk${mmcblk}p${mmcpart} rootfstype=ext4 rootwait rw\0 " \
-	"loadbootscript=load mmc ${mmcdev}:${mmcpart} ${loadaddr} ${bootdir}/${script};\0" \
+	"loadbootscript=ext4load mmc ${mmcdev}:${mmcpart} ${loadaddr} ${bootdir}/${script};\0" \
 	"bootscript=echo Running bootscript from mmc ...; " \
 		"source\0" \
-	"loadimage=load mmc ${mmcdev}:${mmcpart} ${img_addr} ${bootdir}/${image};" \
+	"loadimage=ext4load mmc ${mmcdev}:${mmcpart} ${img_addr} ${bootdir}/${image};" \
 		"unzip ${img_addr} ${loadaddr}\0" \
 	"findfdt=" \
 		"if test $fdt_file = undefined; then " \
@@ -187,15 +187,15 @@
 		"fi; \0" \
 	"loadfdt=run findfdt; " \
 		"echo fdt_file=${fdt_file}; " \
-		"load mmc ${mmcdev}:${mmcpart} ${fdt_addr} ${bootdir}/${fdt_file}\0" \
+		"ext4load mmc ${mmcdev}:${mmcpart} ${fdt_addr} ${bootdir}/${fdt_file}\0" \
 	"hdp_addr=0x9c000000\0" \
 	"hdprx_addr=0x9c800000\0" \
 	"hdp_file=hdmitxfw.bin\0" \
 	"hdprx_file=hdmirxfw.bin\0" \
-	"loadhdp=load mmc ${mmcdev}:${mmcpart} ${hdp_addr} ${bootdir}/${hdp_file}\0" \
-	"loadhdprx=load mmc ${mmcdev}:${mmcpart} ${hdprx_addr} ${bootdir}/${hdprx_file}\0" \
+	"loadhdp=ext4load mmc ${mmcdev}:${mmcpart} ${hdp_addr} ${bootdir}/${hdp_file}\0" \
+	"loadhdprx=ext4load mmc ${mmcdev}:${mmcpart} ${hdprx_addr} ${bootdir}/${hdprx_file}\0" \
 	"boot_os=booti ${loadaddr} - ${fdt_addr};\0" \
-	"loadcntr=load mmc ${mmcdev}:${mmcpart} ${cntr_addr} ${bootdir}/${cntr_file}\0" \
+	"loadcntr=ext4load mmc ${mmcdev}:${mmcpart} ${cntr_addr} ${bootdir}/${cntr_file}\0" \
 	"auth_os=auth_cntr ${cntr_addr}\0" \
 	"mmcboot=echo Booting from mmc ...; " \
 		"if run loadhdp; then; hdp load ${hdp_addr}; fi;" \
@@ -298,13 +298,12 @@
 #define CONFIG_SYS_MALLOC_LEN		((CONFIG_ENV_SIZE + (32 * 1024)) * 1024)
 
 #define CONFIG_SYS_SDRAM_BASE		0x80000000
+#define CONFIG_NR_DRAM_BANKS		4
 #define PHYS_SDRAM_1			0x80000000
 #define PHYS_SDRAM_2			0x880000000
 #define DEFAULT_DRAM_SIZE		(4096U * SZ_1M)
-#define PHYS_SDRAM_1_SIZE		0x80000000	/* 2 GB */
-#define PHYS_SDRAM_2_SIZE		0x100000000	/* 4 GB */
 
-#define VAR_EEPROM_DRAM_START          (CONFIG_SYS_SDRAM_BASE + \
+#define VAR_EEPROM_DRAM_START          (CONFIG_SYS_MEMTEST_START + \
                                         (DEFAULT_DRAM_SIZE >> 1))
 
 #define CONFIG_SYS_MEMTEST_START    0xA0000000
