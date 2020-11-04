@@ -187,7 +187,7 @@
 &wu {
 	u-boot,dm-spl;
 };
-
+/*
 &i2c0 {
 
 	u-boot,dm-spl;
@@ -195,4 +195,4 @@
 
 &pinctrl_i2c0 {
 	u-boot,dm-spl;
-};
+};*/

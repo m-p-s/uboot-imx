@@ -138,7 +138,7 @@ int var_eeprom_get_dram_size(struct var_eeprom *ep, phys_size_t *size)
 {
 	/* No data in EEPROM - return default DRAM size */
 	if (!var_eeprom_is_valid(ep)) {
-		*size = DEFAULT_DRAM_SIZE;
+		*size = DEFAULT_SDRAM_SIZE;
 		return 0;
 	}
 

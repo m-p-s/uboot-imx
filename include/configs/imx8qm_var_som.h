@@ -66,7 +66,6 @@
 #define FEC_QUIRK_ENET_MAC
 #define PHY_ANEG_TIMEOUT 20000
 
-
 /* ENET0 MDIO are shared */
 #define CONFIG_FEC_MXC_MDIO_BASE			0x5B040000
 
@@ -301,13 +300,13 @@
 #define CONFIG_NR_DRAM_BANKS		4
 #define PHYS_SDRAM_1			0x80000000
 #define PHYS_SDRAM_2			0x880000000
-#define DEFAULT_DRAM_SIZE		(4096U * SZ_1M)
+#define DEFAULT_SDRAM_SIZE		(4096U * SZ_1M)
 
 #define VAR_EEPROM_DRAM_START          (CONFIG_SYS_MEMTEST_START + \
-                                        (DEFAULT_DRAM_SIZE >> 1))
+                                        (DEFAULT_SDRAM_SIZE >> 1))
 
 #define CONFIG_SYS_MEMTEST_START    0xA0000000
-#define CONFIG_SYS_MEMTEST_END	    (CONFIG_SYS_MEMTEST_START + ((DEFAULT_DRAM_SIZE * 1024) >> 2))
+#define CONFIG_SYS_MEMTEST_END	    (CONFIG_SYS_MEMTEST_START + ((DEFAULT_SDRAM_SIZE * 1024) >> 2))
 
 /* Serial */
 #define CONFIG_BAUDRATE			115200
