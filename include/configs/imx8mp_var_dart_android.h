@@ -33,10 +33,7 @@
 	"fdt_high=0xffffffffffffffff\0"		\
 	"initrd_high=0xffffffffffffffff\0"	\
 	"bootargs=" \
-		"console=ttymxc0,115200 " \
 		"init=/init " \
-		"earlycon=imxuart,0x30860000,115200 " \
-		"androidboot.console=ttymxc0 " \
 		"consoleblank=0 " \
 		"androidboot.hardware=freescale " \
 		"androidboot.force_normal_boot=1 " \
