@@ -31,7 +31,18 @@
 #define CONFIG_EXTRA_ENV_SETTINGS		\
 	"splashpos=m,m\0"			\
 	"fdt_high=0xffffffffffffffff\0"		\
-	"initrd_high=0xffffffffffffffff\0"
+	"initrd_high=0xffffffffffffffff\0"	\
+	"bootargs=" \
+		"console=ttymxc0,115200 " \
+		"init=/init " \
+		"earlycon=imxuart,0x30860000,115200 " \
+		"androidboot.console=ttymxc0 " \
+		"consoleblank=0 " \
+		"androidboot.hardware=freescale " \
+		"androidboot.force_normal_boot=1 " \
+		"cma=800M@0x400M-0xb80M " \
+		"firmware_class.path=/vendor/firmware " \
+		"transparent_hugepage=never\0"
 
 /* Enable mcu firmware flash */
 #ifdef CONFIG_FLASH_MCUFIRMWARE_SUPPORT
