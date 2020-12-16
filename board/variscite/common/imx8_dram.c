@@ -125,9 +125,7 @@ phys_size_t get_effective_memsize(void)
 		return gd->ram_size;
 	}
 }
-#endif
-
-#ifdef CONFIG_IMX8_BOARD_INIT_DRAM
+#elif defined(CONFIG_IMX8_BOARD_INIT_DRAM)
 
 #define MEMSTART_ALIGNMENT  SZ_2M /* Align the memory start with 2MB */
 
