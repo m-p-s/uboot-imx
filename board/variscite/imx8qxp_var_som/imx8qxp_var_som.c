@@ -117,16 +117,17 @@ int ft_board_setup(void *blob, bd_t *bd)
 
 int board_late_init(void)
 {
-	struct var_eeprom eeprom;
+	struct var_eeprom *ep = VAR_EEPROM_DATA;
 
 	build_info();
 
-	var_eeprom_read_header(&eeprom);
+	if (!var_eeprom_is_valid(ep))
+		var_eeprom_read_header(ep);
 
 #ifdef CONFIG_FEC_MXC
-	var_setup_mac(&eeprom);
+	var_setup_mac(ep);
 #endif
-	var_eeprom_print_prod_info(&eeprom);
+	var_eeprom_print_prod_info(ep);
 
 #ifdef CONFIG_ENV_VARS_UBOOT_RUNTIME_CONFIG
 	env_set("board_name", "VAR-SOM-MX8X");
@@ -152,3 +153,12 @@ int board_late_init(void)
 
 	return 0;
 }
+
+#ifdef CONFIG_FSL_FASTBOOT
+#ifdef CONFIG_ANDROID_RECOVERY
+int is_recovery_key_pressing(void)
+{
+        return 0; /*TODO*/
+}
+#endif /*CONFIG_ANDROID_RECOVERY*/
+#endif /*CONFIG_FSL_FASTBOOT*/

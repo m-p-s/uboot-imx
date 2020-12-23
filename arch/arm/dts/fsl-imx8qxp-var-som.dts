@@ -127,6 +127,13 @@
 	phy-reset-post-delay = <100>;
 };
 
+&i2c0 {
+	clock-frequency = <100000>;
+	pinctrl-names = "default";
+	pinctrl-0 = <&pinctrl_lpi2c0>;
+	status = "okay";
+};
+
 &i2c1 {
 	#address-cells = <1>;
 	#size-cells = <0>;
@@ -291,6 +298,13 @@
 			fsl,pins = <
 				SC_P_SCU_GPIO0_00_ADMA_UART3_RX			0x06000020
 				SC_P_SCU_GPIO0_01_ADMA_UART3_TX			0x06000020
+			>;
+		};
+
+		pinctrl_lpi2c0: lpi2c0grp {
+			fsl,pins = <
+				SC_P_MIPI_CSI0_GPIO0_00_ADMA_I2C0_SCL		0x06000021
+				SC_P_MIPI_CSI0_GPIO0_01_ADMA_I2C0_SDA		0x06000021
 			>;
 		};
 
